@@ -4,7 +4,7 @@ REM Define environment variables
 set POSTGRES_USER=postgres
 set POSTGRES_PASSWORD=postgres
 set POSTGRES_DB=AutomatedPostgres
-set POSTGRES_PORT=5434
+set POSTGRES_PORT=5432
 set POSTGRES_OPENWEATHERLINK="https://api.openweathermap.org/data/2.5/weather?q=Werfenweng&units=metric&appid=9baa53afdf2ddb2f93e029e19ff7e904"
 
 REM Build the Docker image with the Dockerfile
