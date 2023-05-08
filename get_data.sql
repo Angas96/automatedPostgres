@@ -27,7 +27,7 @@ conn = psycopg2.connect(
 # Insert the data into the specified table
 cur = conn.cursor()
 cur.execute("""
-    INSERT INTO weatherDataOpenAPIlonlat (
+    INSERT INTO weatherDataOpenAPI (
         lon, lat, base, temp, feels_like, temp_min, temp_max, pressure, humidity, sea_level,
         grnd_level, visibility, speed, deg, gust, all_clouds, dt, type, sys_id, country,
         sunrise, sunset, timezone, city_id, city_name, cod

@@ -1,4 +1,4 @@
-CREATE TABLE weatherDataOpenAPIlonlat (
+CREATE TABLE weatherDataOpenAPI(
     id SERIAL PRIMARY KEY,
     lon NUMERIC,
     lat NUMERIC,
