@@ -1,14 +1,16 @@
-CREATE OR REPLACE FUNCTION get_data(url TEXT, data TEXT, api_key TEXT)
+CREATE OR REPLACE FUNCTION get_data()
 RETURNS VOID
 LANGUAGE plpython3u
 AS $$
 import urllib.request
 import json
 import psycopg2
+import os
 
-# Check if the API key is valid
-if api_key != '9baa53afdf2ddb2f93e029e19ff7e904':
-    raise ValueError('Invalid API key')
+# Check if the url is read correctly
+url = os.getenv('POSTGRES_OPENWEATHERLINK')
+if url is None:
+    raise ValueError(f'Enviroment variable POSTGRES_OPENWEATHERLINK not found')
 
 # Open the URL and retrieve the data
 with urllib.request.urlopen(url) as response:
@@ -16,15 +18,32 @@ with urllib.request.urlopen(url) as response:
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
-    dbname='your_database_name',
-    user='your_user_name',
-    password='your_password',
-    host='your_host_name'
+    dbname='AutomatedPostgres',
+    user='postgres',
+    password='postgres',
+    host='localhost'
 )
 
 # Insert the data into the specified table
 cur = conn.cursor()
-cur.execute("INSERT INTO your_table_name (data) VALUES (%s)", (json.dumps(data),))
+cur.execute("""
+    INSERT INTO weatherDataOpenAPIlonlat (
+        lon, lat, base, temp, feels_like, temp_min, temp_max, pressure, humidity, sea_level,
+        grnd_level, visibility, speed, deg, gust, all_clouds, dt, type, sys_id, country,
+        sunrise, sunset, timezone, city_id, city_name, cod
+    ) VALUES (
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+        %s, %s, %s, %s, %s, %s
+    )
+""", (
+    data['coord']['lon'], data['coord']['lat'], data['base'], data['main']['temp'], data['main']['feels_like'],
+    data['main']['temp_min'], data['main']['temp_max'], data['main']['pressure'], data['main']['humidity'],
+    data['main']['sea_level'], data['main']['grnd_level'], data['visibility'], data['wind']['speed'],
+    data['wind']['deg'], data['wind']['gust'], data['clouds']['all'], data['dt'], data['sys']['type'],
+    data['sys']['id'], data['sys']['country'], data['sys']['sunrise'], data['sys']['sunset'],
+    data['timezone'], data['id'], data['name'], data['cod']
+))
 conn.commit()
 
 # Close the database connection

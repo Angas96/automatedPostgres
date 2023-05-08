@@ -1,3 +1,29 @@
-CREATE TABLE openweatherdata(
-	weather JSON
-)
+CREATE TABLE weatherDataOpenAPIlonlat (
+    id SERIAL PRIMARY KEY,
+    lon NUMERIC,
+    lat NUMERIC,
+    base VARCHAR(50),
+    temp NUMERIC,
+    feels_like NUMERIC,
+    temp_min NUMERIC,
+    temp_max NUMERIC,
+    pressure NUMERIC,
+    humidity NUMERIC,
+    sea_level NUMERIC,
+    grnd_level NUMERIC,
+    visibility NUMERIC,
+    speed NUMERIC,
+    deg NUMERIC,
+    gust NUMERIC,
+    all_clouds NUMERIC,
+    dt NUMERIC,
+    type NUMERIC,
+    sys_id NUMERIC,
+    country VARCHAR(10),
+    sunrise NUMERIC,
+    sunset NUMERIC,
+    timezone NUMERIC,
+    city_id NUMERIC,
+    city_name VARCHAR(50),
+    cod NUMERIC
+);
