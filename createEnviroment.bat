@@ -11,7 +11,7 @@ set POSTGRES_UNITS_OPEN=metric
 set POSTGRES_OPENWEATHERLINK="https://api.openweathermap.org/data/2.5/weather?q=%POSTGRES_CITY%&units=%POSTGRES_UNITS_OPEN%&appid=%POSTGRES_API_KEY_OPEN%"
 
 REM Build the Docker image with the Dockerfile
-docker build -t automatedpostgress .
+docker build -t automatedpostgres .
 
 REM Run the Docker container with the specified environment variables
 docker run -d -p %POSTGRES_PORT%:5432 -e POSTGRES_USER=%POSTGRES_USER% -e POSTGRES_PASSWORD=%POSTGRES_PASSWORD% -e POSTGRES_DB=%POSTGRES_DB% -e POSTGRES_OPENWEATHERLINK=%POSTGRES_OPENWEATHERLINK% --name automatedPostgres automatedpostgres
