@@ -47,11 +47,17 @@ export POSTGRES_METGISLINK_CURRENT="https://api.metgis.com/forecast?key=$POSTGRE
 export POSTGRES_METGISLINK_FORECAST=
 add commands how to start all services docker/etc
 ```
+**For Windows Users simply start the createContainer.bat in the Git Folder which is provided.**
+**For Linux Users please ensure that the Scripts have the correct permissions to be executed.**
+To ensure this simply type: 
+```bash
+chmod +x createContainer.sh
+```
+To start the shell script type: 
+```bash
+./createContainer.sh
+```
 
+For testing reasons install pgadmin4 via docker (https://hub.docker.com/r/dpage/pgadmin4/)
+docker pull dpage/pgadmin4
 
-for testing reasons install pgadmin4 via docker
-
-enter folder of the project
-use createContainer.bat
-
-Enjoy!
