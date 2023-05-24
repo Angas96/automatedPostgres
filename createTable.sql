@@ -58,3 +58,61 @@ CREATE TABLE weatherDataMetgisAPICurrent(
     precipitation_rain_intensity NUMERIC,
     wind_strength TEXT
 );
+
+CREATE TABLE weatherDataMetgisPrecipitationHistory(
+    id SERIAL PRIMARY KEY,
+    info TEXT,
+    lon NUMERIC,
+    lat NUMERIC,
+    alt NUMERIC,
+    date TEXT,
+    hrp NUMERIC,
+    info_hrp TEXT,
+    info_lat TEXT,
+    info_lon TEXT,
+    info_alt TEXT
+);
+
+CREATE TABLE weatherDataMetgisRelHumidityHistory(
+    id SERIAL PRIMARY KEY,
+    info TEXT,
+    lon NUMERIC,
+    lat NUMERIC,
+    alt NUMERIC,
+    date TEXT,
+    rh NUMERIC,
+    info_rh TEXT,
+    info_lat TEXT,
+    info_lon TEXT,
+    info_alt TEXT
+);
+
+CREATE TABLE weatherDataMetgisTemperatureHistory(
+    id SERIAL PRIMARY KEY,
+    info TEXT,
+    lon NUMERIC,
+    lat NUMERIC,
+    alt NUMERIC,
+    date TEXT,
+    tmp NUMERIC,
+    info_tmp TEXT,
+    info_lat TEXT,
+    info_lon TEXT,
+    info_alt TEXT
+);
+
+CREATE TABLE weatherDataMetgisWindHistory(
+    id SERIAL PRIMARY KEY,
+    info TEXT,
+    lon NUMERIC,
+    lat NUMERIC,
+    alt NUMERIC,
+    date TEXT,
+    wdir NUMERIC,
+    wspd NUMERIC,
+    info_wdir TEXT,
+    info_wspd TEXT,
+    info_lat TEXT,
+    info_lon TEXT,
+    info_alt TEXT
+);
