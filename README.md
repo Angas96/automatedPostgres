@@ -52,6 +52,9 @@ To ensure this simply type:
 ```bash
 chmod +x createContainer.sh
 ```
+```bash
+chmod +x createEnviromentVariables.sh
+```
 To start the shell script type: 
 ```bash
 source createEnviromentVariables.sh
