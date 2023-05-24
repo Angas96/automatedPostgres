@@ -54,6 +54,9 @@ chmod +x createContainer.sh
 ```
 To start the shell script type: 
 ```bash
+source createEnviromentVariables.sh
+```
+```bash
 ./createContainer.sh
 ```
 
