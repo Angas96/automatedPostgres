@@ -52,14 +52,14 @@ export POSTGRES_METGISLINK_FORECAST=
 **For Linux Users please ensure that the Scripts have the correct permissions to be executed.**
 
 
-To ensure this simply type: 
+To ensure that simply type: 
 ```bash
 chmod +x createContainer.sh
 ```
 ```bash
 chmod +x createEnviromentVariables.sh
 ```
-To start the shell script type: 
+To start the shell scripts type: 
 ```bash
 source createEnviromentVariables.sh
 ```
