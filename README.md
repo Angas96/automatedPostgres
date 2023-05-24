@@ -67,6 +67,10 @@ source createEnviromentVariables.sh
 ./createContainer.sh
 ```
 
-For testing reasons install pgadmin4 via docker (https://hub.docker.com/r/dpage/pgadmin4/)
+**Step 3: For testing reasons install pgadmin4 via docker (https://hub.docker.com/r/dpage/pgadmin4/)**
+
+
+```console
 docker pull dpage/pgadmin4
+```
 
