@@ -1,3 +1,5 @@
+/*code for creating tables which are needed for insertion and handling of data*/
+
 CREATE TABLE weatherDataOpenAPI(
     id SERIAL PRIMARY KEY,
     lon NUMERIC,
@@ -26,4 +28,33 @@ CREATE TABLE weatherDataOpenAPI(
     city_id NUMERIC,
     city_name VARCHAR(50),
     cod NUMERIC
+);
+
+CREATE TABLE weatherDataMetgisAPICurrent(
+    id SERIAL PRIMARY KEY,
+    description TEXT,
+    forecast_calculated_local_time TEXT,
+    forecast_calculated_utc TEXT,
+    latitude NUMERIC,
+    longitude NUMERIC,
+    altitude NUMERIC,
+    temperature NUMERIC,
+    moon_phase TEXT,
+    precipitation_total_intensity NUMERIC,
+    precipitation_total_intensity_unit TEXT,
+    precipitation_snow_intensity_unit TEXT,
+    precipitation_rain_intensity_unit TEXT,
+    weather_description TEXT,
+    moon_rise TEXT,
+    wind_speed NUMERIC,
+    temperature_unit TEXT,
+    sun_set TEXT,
+    sun_rise TEXT,
+    precipitation_snow_intensity NUMERIC,
+    wind_speed_unit TEXT,
+    moon_set TEXT,
+    icon TEXT,
+    wind_direction TEXT,
+    precipitation_rain_intensity NUMERIC,
+    wind_strength TEXT
 );

@@ -1,12 +1,11 @@
 #!/bin/bash
 
-#install cron first
-apt-get update
-apt-get install -y cron
-
-
 #set cronjobs which should be executed by the crontab
-(crontab -l ; echo "*/1 * * * * /docker-entrypoint-initdb.d/getDataCron.sh") | crontab -
+(crontab -l ; echo "*/5 * * * * /helperScripts/getDataCron.sh") | crontab -
+
+# * = any value
+# minute hour day(month) month day(week) is the syntax for the cronjob
+# */5 means every 5 minutes
 
 #start cron service to be executed
 service cron start
