@@ -2,7 +2,7 @@
 
 **Step 1: Install docker (https://www.docker.com/)**
 
-**Step 2: make a createEnviromentVariables.bat file which should look like this:**
+**Step 2: Make a createEnviromentVariables.bat file which should look like this:**
 
 ```Batch
 
