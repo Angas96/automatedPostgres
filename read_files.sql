@@ -8,11 +8,11 @@ def import_data(json_file):
         with open(json_file, 'r') as file:
             data = json.load(file)
             if 'data' in data:
-            info = data.get('Info')
-            info_hrp = data.get('Info_hrp')
-            info_lat = data.get('Info_lat')
-            info_lon = data.get('Info_lon')
-            info_alt = data.get('Info_alt')
+                info = data.get('Info')
+                info_hrp = data.get('Info_hrp')
+                info_lat = data.get('Info_lat')
+                info_lon = data.get('Info_lon')
+                info_alt = data.get('Info_alt')
                 for record in data['data']:
                     lon = record.get('lon')
                     lat = record.get('lat')
@@ -29,7 +29,7 @@ def import_data(json_file):
         plpy.error("JSON file does not exist.")
 
 import_data(json_file)
-$$ LANGUAGE plpythonu;
+$$ LANGUAGE plpython3u;
 
 CREATE OR REPLACE FUNCTION import_RelHumidity(json_file text)
 RETURNS void AS $$
@@ -41,11 +41,11 @@ def import_data(json_file):
         with open(json_file, 'r') as file:
             data = json.load(file)
             if 'data' in data:
-            info = data.get('Info')
-            info_rh = data.get('Info_rh')
-            info_lat = data.get('Info_lat')
-            info_lon = data.get('Info_lon')
-            info_alt = data.get('Info_alt')
+                info = data.get('Info')
+                info_rh = data.get('Info_rh')
+                info_lat = data.get('Info_lat')
+                info_lon = data.get('Info_lon')
+                info_alt = data.get('Info_alt')
                 for record in data['data']:
                     lon = record.get('lon')
                     lat = record.get('lat')
@@ -62,7 +62,7 @@ def import_data(json_file):
         plpy.error("JSON file does not exist.")
 
 import_data(json_file)
-$$ LANGUAGE plpythonu;
+$$ LANGUAGE plpython3u;
 
 CREATE OR REPLACE FUNCTION import_Temperature(json_file text)
 RETURNS void AS $$
@@ -74,11 +74,11 @@ def import_data(json_file):
         with open(json_file, 'r') as file:
             data = json.load(file)
             if 'data' in data:
-            info = data.get('Info')
-            info_tmp = data.get('Info_tmp')
-            info_lat = data.get('Info_lat')
-            info_lon = data.get('Info_lon')
-            info_alt = data.get('Info_alt')
+                info = data.get('Info')
+                info_tmp = data.get('Info_tmp')
+                info_lat = data.get('Info_lat')
+                info_lon = data.get('Info_lon')
+                info_alt = data.get('Info_alt')
                 for record in data['data']:
                     lon = record.get('lon')
                     lat = record.get('lat')
@@ -95,7 +95,7 @@ def import_data(json_file):
         plpy.error("JSON file does not exist.")
 
 import_data(json_file)
-$$ LANGUAGE plpythonu;
+$$ LANGUAGE plpython3u;
 
 CREATE OR REPLACE FUNCTION import_Wind(json_file text)
 RETURNS void AS $$
@@ -107,12 +107,12 @@ def import_data(json_file):
         with open(json_file, 'r') as file:
             data = json.load(file)
             if 'data' in data:
-            info = data.get('Info')
-            info_wdir = data.get('Info_wdir')
-            info_wspd = data.get('Info_wspd')
-            info_lat = data.get('Info_lat')
-            info_lon = data.get('Info_lon')
-            info_alt = data.get('Info_alt')
+                info = data.get('Info')
+                info_wdir = data.get('Info_wdir')
+                info_wspd = data.get('Info_wspd')
+                info_lat = data.get('Info_lat')
+                info_lon = data.get('Info_lon')
+                info_alt = data.get('Info_alt')
                 for record in data['data']:
                     lon = record.get('lon')
                     lat = record.get('lat')
@@ -129,4 +129,4 @@ def import_data(json_file):
         plpy.error("JSON file does not exist.")
 
 import_data(json_file)
-$$ LANGUAGE plpythonu;
+$$ LANGUAGE plpython3u;

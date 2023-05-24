@@ -15,8 +15,10 @@ COPY extension.sql /docker-entrypoint-initdb.d/
 COPY createTable.sql /docker-entrypoint-initdb.d/
 COPY get_data.sql /docker-entrypoint-initdb.d/
 COPY get_data_metgis_current.sql /docker-entrypoint-initdb.d/
+COPY read_files.sql /docker-entrypoint-initdb.d/
 COPY getDataCron.sh /helperScripts/
 COPY cronStart.sh /helperScripts/
+
 
 # Changing the Ownership and Permissions of the copied Files
 RUN chown postgres:postgres /docker-entrypoint-initdb.d/extension.sql \
