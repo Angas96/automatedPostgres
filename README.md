@@ -4,7 +4,7 @@
 
 **Step 2: make a createEnviromentVariables.bat file which should look like this:**
 
-```python
+```Batch
 
 @echo off
 
