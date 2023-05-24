@@ -47,7 +47,11 @@ export POSTGRES_METGISLINK_CURRENT="https://api.metgis.com/forecast?key=$POSTGRE
 export POSTGRES_METGISLINK_FORECAST=
 ```
 **For Windows Users simply start the createContainer.bat in the Git Folder which is provided.**
+
+
 **For Linux Users please ensure that the Scripts have the correct permissions to be executed.**
+
+
 To ensure this simply type: 
 ```bash
 chmod +x createContainer.sh
