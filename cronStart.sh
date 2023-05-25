@@ -2,6 +2,7 @@
 
 #set cronjobs which should be executed by the crontab
 (crontab -l ; echo "*/5 * * * * /helperScripts/getDataCron.sh") | crontab -
+./helperScripts/getDataFromFiles.sh
 
 # * = any value
 # minute hour day(month) month day(week) is the syntax for the cronjob

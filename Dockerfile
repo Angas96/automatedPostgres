@@ -17,9 +17,10 @@ COPY createTable.sql /docker-entrypoint-initdb.d/
 COPY get_data.sql /docker-entrypoint-initdb.d/
 COPY get_data_metgis_current.sql /docker-entrypoint-initdb.d/
 COPY read_files.sql /docker-entrypoint-initdb.d/
+COPY wetter /jsonfiles
 COPY getDataCron.sh /helperScripts/
 COPY cronStart.sh /helperScripts/
-COPY wetter /jsonfiles
+COPY getDataFromFiles.sh /helperScripts/
 
 
 
@@ -41,3 +42,6 @@ RUN chown postgres:postgres /helperScripts/getDataCron.sh \
 
 RUN chown postgres:postgres /helperScripts/cronStart.sh \
     && chmod 755 /helperScripts/cronStart.sh 
+
+RUN chown postgres:postgres /helperScripts/getDataFromFiles.sh \
+    && chmod 755 /helperScripts/getDataFromFiles.sh 
