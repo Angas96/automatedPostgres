@@ -9,6 +9,7 @@ RUN pip3 install psycopg2-binary
 
 # Creating Folder for Scripts
 RUN mkdir helperScripts
+RUN mkdir jsonfiles
 
 # Copying Files from the git repo to the Docker Container
 COPY extension.sql /docker-entrypoint-initdb.d/
@@ -18,6 +19,8 @@ COPY get_data_metgis_current.sql /docker-entrypoint-initdb.d/
 COPY read_files.sql /docker-entrypoint-initdb.d/
 COPY getDataCron.sh /helperScripts/
 COPY cronStart.sh /helperScripts/
+COPY wetter /jsonfiles
+
 
 
 # Changing the Ownership and Permissions of the copied Files

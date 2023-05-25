@@ -2,8 +2,16 @@ CREATE OR REPLACE FUNCTION import_percipitation(json_file text)
 RETURNS void AS $$
 import json
 import os
+import psycopg2
 
 def import_data(json_file):
+    conn = psycopg2.connect(
+    dbname=os.getenv('POSTGRES_DB'),
+    user=os.getenv('POSTGRES_USER'),
+    password=os.getenv('POSTGRES_PASSWORD'),
+    host='localhost'
+    )
+    cur = conn.cursor()
     if os.path.exists(json_file):
         with open(json_file, 'r') as file:
             data = json.load(file)
@@ -13,16 +21,17 @@ def import_data(json_file):
                 info_lat = data.get('Info_lat')
                 info_lon = data.get('Info_lon')
                 info_alt = data.get('Info_alt')
+                print(info)
                 for record in data['data']:
                     lon = record.get('lon')
                     lat = record.get('lat')
                     alt = record.get('alt')
                     date = record.get('date')
                     hrp = record.get('hrp')
-                    if date is not None and temperature is not None and humidity is not None and wind_speed is not None:
-                        # Insert the record into the table
-                        plpy.execute("INSERT INTO weatherDataMetgisPrecipitationHistory (info, lon, lat, alt, date, hrp, info_hrp, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                                     (info, lon, lat, alt, date, hrp, info_hrp, info_lat, info_lon, info_alt))
+                    # Insert the record into the table
+                    cur.execute("INSERT INTO weatherDataMetgisPrecipitationHistory (info, lon, lat, alt, date, hrp, info_hrp, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (info, lon, lat, alt, date, hrp, info_hrp, info_lat, info_lon, info_alt))
+                    conn.commit()
+                conn.close()
             else:
                 plpy.error("Invalid JSON format. 'data' key not found.")
     else:
@@ -35,8 +44,16 @@ CREATE OR REPLACE FUNCTION import_RelHumidity(json_file text)
 RETURNS void AS $$
 import json
 import os
+import psycopg2
 
 def import_data(json_file):
+    conn = psycopg2.connect(
+    dbname=os.getenv('POSTGRES_DB'),
+    user=os.getenv('POSTGRES_USER'),
+    password=os.getenv('POSTGRES_PASSWORD'),
+    host='localhost'
+    )
+    cur = conn.cursor()
     if os.path.exists(json_file):
         with open(json_file, 'r') as file:
             data = json.load(file)
@@ -52,10 +69,11 @@ def import_data(json_file):
                     alt = record.get('alt')
                     date = record.get('date')
                     rh = record.get('rh')
-                    if date is not None and temperature is not None and humidity is not None and wind_speed is not None:
-                        # Insert the record into the table
-                        plpy.execute("INSERT INTO weatherDataMetgisRelHumidityHistory (info, lon, lat, alt, date, rh, info_rh, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                                     (info, lon, lat, alt, date, rh, info_rh, info_lat, info_lon, info_alt))
+                    # Insert the record into the table
+                    cur.execute("INSERT INTO weatherDataMetgisRelHumidityHistory (info, lon, lat, alt, date, rh, info_rh, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    (info, lon, lat, alt, date, rh, info_rh, info_lat, info_lon, info_alt))
+                    conn.commit()
+                conn.close()
             else:
                 plpy.error("Invalid JSON format. 'data' key not found.")
     else:
@@ -68,8 +86,16 @@ CREATE OR REPLACE FUNCTION import_Temperature(json_file text)
 RETURNS void AS $$
 import json
 import os
+import psycopg2
 
 def import_data(json_file):
+    conn = psycopg2.connect(
+    dbname=os.getenv('POSTGRES_DB'),
+    user=os.getenv('POSTGRES_USER'),
+    password=os.getenv('POSTGRES_PASSWORD'),
+    host='localhost'
+    )
+    cur = conn.cursor()
     if os.path.exists(json_file):
         with open(json_file, 'r') as file:
             data = json.load(file)
@@ -85,10 +111,11 @@ def import_data(json_file):
                     alt = record.get('alt')
                     date = record.get('date')
                     tmp = record.get('tmp')
-                    if date is not None and temperature is not None and humidity is not None and wind_speed is not None:
-                        # Insert the record into the table
-                        plpy.execute("INSERT INTO weatherDataMetgisTemperatureHistory (info, lon, lat, alt, date, tmp, info_tmp, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                                     (info, lon, lat, alt, date, tmp, info_tmp, info_lat, info_lon, info_alt))
+                    # Insert the record into the table
+                    cur.execute("INSERT INTO weatherDataMetgisTemperatureHistory (info, lon, lat, alt, date, tmp, info_tmp, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    (info, lon, lat, alt, date, tmp, info_tmp, info_lat, info_lon, info_alt))
+                    conn.commit()
+                conn.close()
             else:
                 plpy.error("Invalid JSON format. 'data' key not found.")
     else:
@@ -101,8 +128,16 @@ CREATE OR REPLACE FUNCTION import_Wind(json_file text)
 RETURNS void AS $$
 import json
 import os
+import psycopg2
 
 def import_data(json_file):
+    conn = psycopg2.connect(
+    dbname=os.getenv('POSTGRES_DB'),
+    user=os.getenv('POSTGRES_USER'),
+    password=os.getenv('POSTGRES_PASSWORD'),
+    host='localhost'
+    )
+    cur = conn.cursor()
     if os.path.exists(json_file):
         with open(json_file, 'r') as file:
             data = json.load(file)
@@ -118,11 +153,13 @@ def import_data(json_file):
                     lat = record.get('lat')
                     alt = record.get('alt')
                     date = record.get('date')
-                    tmp = record.get('tmp')
-                    if date is not None and temperature is not None and humidity is not None and wind_speed is not None:
-                        # Insert the record into the table
-                        plpy.execute("INSERT INTO weatherDataMetgisWindHistory (info, lon, lat, alt, date, wdir, wspd, info_wdir, info_wspd, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                                     (info, lon, lat, alt, date, wdir, wspd, info_wdir, info_wspd, info_lat, info_lon, info_alt))
+                    wdir = record.get('wdir')
+                    wspd = record.get('wspd')
+                    # Insert the record into the table
+                    cur.execute("INSERT INTO weatherDataMetgisWindHistory (info, lon, lat, alt, date, wdir, wspd, info_wdir, info_wspd, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    (info, lon, lat, alt, date, wdir, wspd, info_wdir, info_wspd, info_lat, info_lon, info_alt))
+                    conn.commit()
+                conn.close()
             else:
                 plpy.error("Invalid JSON format. 'data' key not found.")
     else:
