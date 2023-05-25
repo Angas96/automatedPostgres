@@ -54,7 +54,7 @@ def import_data(json_file):
                     rh = record.get('rh')
                     if date is not None and temperature is not None and humidity is not None and wind_speed is not None:
                         # Insert the record into the table
-                        plpy.execute("INSERT INTO weatherDataMetgisPrecipitationHistory (info, lon, lat, alt, date, rh, info_rh, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                        plpy.execute("INSERT INTO weatherDataMetgisRelHumidityHistory (info, lon, lat, alt, date, rh, info_rh, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                                      (info, lon, lat, alt, date, rh, info_rh, info_lat, info_lon, info_alt))
             else:
                 plpy.error("Invalid JSON format. 'data' key not found.")
@@ -87,7 +87,7 @@ def import_data(json_file):
                     tmp = record.get('tmp')
                     if date is not None and temperature is not None and humidity is not None and wind_speed is not None:
                         # Insert the record into the table
-                        plpy.execute("INSERT INTO weatherDataMetgisPrecipitationHistory (info, lon, lat, alt, date, tmp, info_tmp, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                        plpy.execute("INSERT INTO weatherDataMetgisTemperatureHistory (info, lon, lat, alt, date, tmp, info_tmp, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                                      (info, lon, lat, alt, date, tmp, info_tmp, info_lat, info_lon, info_alt))
             else:
                 plpy.error("Invalid JSON format. 'data' key not found.")
@@ -121,7 +121,7 @@ def import_data(json_file):
                     tmp = record.get('tmp')
                     if date is not None and temperature is not None and humidity is not None and wind_speed is not None:
                         # Insert the record into the table
-                        plpy.execute("INSERT INTO weatherDataMetgisPrecipitationHistory (info, lon, lat, alt, date, wdir, wspd, info_wdir, info_wspd, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                        plpy.execute("INSERT INTO weatherDataMetgisWindHistory (info, lon, lat, alt, date, wdir, wspd, info_wdir, info_wspd, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                                      (info, lon, lat, alt, date, wdir, wspd, info_wdir, info_wspd, info_lat, info_lon, info_alt))
             else:
                 plpy.error("Invalid JSON format. 'data' key not found.")
