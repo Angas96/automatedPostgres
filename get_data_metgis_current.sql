@@ -18,9 +18,9 @@ with urllib.request.urlopen(url) as response:
 
 # Connect to the PostgreSQL database
 conn = psycopg2.connect(
-    dbname='AutomatedPostgres',
-    user='postgres',
-    password='postgres',
+    dbname=os.getenv('POSTGRES_DB'),
+    user=os.getenv('POSTGRES_USER'),
+    password=os.getenv('POSTGRES_PASSWORD'),
     host='localhost'
 )
 
