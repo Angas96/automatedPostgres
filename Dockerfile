@@ -21,6 +21,7 @@ COPY wetter /jsonfiles
 COPY getDataCron.sh /helperScripts/
 COPY cronStart.sh /helperScripts/
 COPY getDataFromFiles.sh /helperScripts/
+COPY entry.sh /docker-entrypoint-initdb.d/
 
 
 
@@ -45,3 +46,6 @@ RUN chown postgres:postgres /helperScripts/cronStart.sh \
 
 RUN chown postgres:postgres /helperScripts/getDataFromFiles.sh \
     && chmod 755 /helperScripts/getDataFromFiles.sh 
+
+RUN chown postgres:postgres /docker-entrypoint-initdb.d/entry.sh \
+    && chmod 755 /docker-entrypoint-initdb.d/entry.sh 
