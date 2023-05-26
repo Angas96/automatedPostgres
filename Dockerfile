@@ -3,49 +3,33 @@ FROM postgres:latest
 
 # Installing required Packages for the Database to ensure everything works as intended
 RUN apt-get update \
-    && apt-get install -y postgresql-plpython3-15 python3-pip cron
-
-RUN pip3 install psycopg2-binary
+    && apt-get install -y postgresql-plpython3-15 python3-pip cron \
+    && pip3 install psycopg2-binary
 
 # Creating Folder for Scripts
-RUN mkdir helperScripts
-RUN mkdir jsonfiles
+RUN mkdir helperScripts jsonfiles
 
 # Copying Files from the git repo to the Docker Container
-COPY extension.sql /docker-entrypoint-initdb.d/
-COPY createTable.sql /docker-entrypoint-initdb.d/
-COPY get_data.sql /docker-entrypoint-initdb.d/
-COPY get_data_metgis_current.sql /docker-entrypoint-initdb.d/
-COPY read_files.sql /docker-entrypoint-initdb.d/
+COPY extension.sql createTable.sql get_data.sql get_data_metgis_current.sql read_files.sql entry.sh /docker-entrypoint-initdb.d/
 COPY wetter /jsonfiles
-COPY getDataCron.sh /helperScripts/
-COPY cronStart.sh /helperScripts/
-COPY getDataFromFiles.sh /helperScripts/
-COPY entry.sh /docker-entrypoint-initdb.d/
-
-
+COPY getDataCron.sh cronStart.sh getDataFromFiles.sh /helperScripts/
 
 # Changing the Ownership and Permissions of the copied Files
-RUN chown postgres:postgres /docker-entrypoint-initdb.d/extension.sql \
-    && chmod 755 /docker-entrypoint-initdb.d/extension.sql
-
-RUN chown postgres:postgres /docker-entrypoint-initdb.d/createTable.sql \
-    && chmod 755 /docker-entrypoint-initdb.d/createTable.sql
-
-RUN chown postgres:postgres /docker-entrypoint-initdb.d/get_data.sql \
-    && chmod 755 /docker-entrypoint-initdb.d/get_data.sql
-
-RUN chown postgres:postgres /docker-entrypoint-initdb.d/get_data_metgis_current.sql \
-    && chmod 755 /docker-entrypoint-initdb.d/get_data_metgis_current.sql
-
-RUN chown postgres:postgres /helperScripts/getDataCron.sh \
-    && chmod 755 /helperScripts/getDataCron.sh 
-
-RUN chown postgres:postgres /helperScripts/cronStart.sh \
-    && chmod 755 /helperScripts/cronStart.sh 
-
-RUN chown postgres:postgres /helperScripts/getDataFromFiles.sh \
-    && chmod 755 /helperScripts/getDataFromFiles.sh 
-
-RUN chown postgres:postgres /docker-entrypoint-initdb.d/entry.sh \
-    && chmod 755 /docker-entrypoint-initdb.d/entry.sh 
+RUN chown postgres:postgres \
+    /docker-entrypoint-initdb.d/extension.sql \
+    /docker-entrypoint-initdb.d/createTable.sql \
+    /docker-entrypoint-initdb.d/get_data.sql \
+    /docker-entrypoint-initdb.d/get_data_metgis_current.sql \
+    /helperScripts/getDataCron.sh \
+    /helperScripts/cronStart.sh \
+    /helperScripts/getDataFromFiles.sh \
+    /docker-entrypoint-initdb.d/entry.sh \
+    && chmod 755 \
+    /docker-entrypoint-initdb.d/extension.sql \
+    /docker-entrypoint-initdb.d/createTable.sql \
+    /docker-entrypoint-initdb.d/get_data.sql \
+    /docker-entrypoint-initdb.d/get_data_metgis_current.sql \
+    /helperScripts/getDataCron.sh \
+    /helperScripts/cronStart.sh \
+    /helperScripts/getDataFromFiles.sh \
+    /docker-entrypoint-initdb.d/entry.sh
