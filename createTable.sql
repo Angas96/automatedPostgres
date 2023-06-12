@@ -29,6 +29,43 @@ CREATE TABLE weatherDataOpenAPI(
     city_name VARCHAR(50),
     cod NUMERIC
 );
+CREATE TABLE weatherDataOpenAPIForecast(
+    id SERIAL PRIMARY KEY,
+    cod NUMERIC,
+    message NUMERIC,
+    cnt NUMERIC,
+    dt NUMERIC,
+    temp NUMERIC,
+    feels_like NUMERIC,
+    temp_min NUMERIC,
+    temp_max NUMERIC,
+    pressure NUMERIC,
+    sea_level NUMERIC,
+    grnd_level NUMERIC,
+    humidity NUMERIC,
+    temp_kf NUMERIC,
+    weather_id NUMERIC,
+    weather_main TEXT,
+    weather_description TEXT,
+    weather_icon TEXT,
+    clouds_all NUMERIC,
+    wind_speed NUMERIC,
+    wind_deg NUMERIC,
+    wind_gust NUMERIC,
+    visibility NUMERIC,
+    pop NUMERIC,
+    sys_pod TEXT,
+    dt_txt TEXT,
+    city_id NUMERIC,
+    city_name TEXT,
+    city_lat NUMERIC,
+    city_lon NUMERIC,
+    city_country TEXT,
+    city_population NUMERIC,
+    city_timezone NUMERIC,
+    city_sunrise NUMERIC,
+    city_sunset NUMERIC
+);
 
 CREATE TABLE weatherDataMetgisAPICurrent(
     id SERIAL PRIMARY KEY,
@@ -116,3 +153,5 @@ CREATE TABLE weatherDataMetgisWindHistory(
     info_lon TEXT,
     info_alt TEXT
 );
+
+
