@@ -33,7 +33,7 @@ CREATE TABLE weatherDataOpenAPI(
 CREATE TABLE weatherDataOpenAPIForecast(
     id SERIAL PRIMARY KEY,
     cod NUMERIC,
-    message NUMERIC,
+    message TEXT,
     cnt NUMERIC,
     dt NUMERIC,
     temp NUMERIC,
