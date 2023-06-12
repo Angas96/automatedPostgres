@@ -23,7 +23,7 @@ set POSTGRES_UNITS_OPEN=metric
 set POSTGRES_OPENWEATHERLINK="https://api.openweathermap.org/data/2.5/weather?q=%POSTGRES_CITY%&units=%POSTGRES_UNITS_OPEN%&appid=%POSTGRES_API_KEY_OPEN%"
 set POSTGRES_API_KEY_METGIS=INSERT API KEY
 set POSTGRES_METGISLINK_CURRENT="https://api.metgis.com/forecast?key=%POSTGRES_API_KEY_METGIS%&lat=%POSTGRES_LAT%&lon=%POSTGRES_LON%&lang=en&v=current"
-set POSTGRES_METGISLINK_FORECAST=""
+set POSTGRES_OPENWEATHERLINK_FORECAST="https://api.openweathermap.org/data/2.5/forecast?lat=%POSTGRES_LAT%&lon=%POSTGRES_LON%&units=%POSTGRES_UNITS_OPEN%&appid=%POSTGRES_API_KEY_OPEN%"
 
 ```
 ### Linux
@@ -44,7 +44,7 @@ export POSTGRES_UNITS_OPEN=metric
 export POSTGRES_OPENWEATHERLINK="https://api.openweathermap.org/data/2.5/weather?q=$POSTGRES_CITY&units=$POSTGRES_UNITS_OPEN&appid=$POSTGRES_API_KEY_OPEN"
 export POSTGRES_API_KEY_METGIS=INSERT API KEY
 export POSTGRES_METGISLINK_CURRENT="https://api.metgis.com/forecast?key=$POSTGRES_API_KEY_METGIS&lat=$POSTGRES_LAT&lon=$POSTGRES_LON&lang=en&v=current"
-export POSTGRES_METGISLINK_FORECAST=
+export POSTGRES_OPENWEATHERLINK_FORECAST="https://api.openweathermap.org/data/2.5/forecast?lat=$POSTGRES_LAT&lon=$POSTGRES_LON&units=$POSTGRES_UNITS_OPEN&appid=$POSTGRES_API_KEY_OPEN"
 ```
 **For Windows Users simply start the createContainer.bat in the Git Folder which is provided.**
 

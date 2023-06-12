@@ -29,6 +29,7 @@ CREATE TABLE weatherDataOpenAPI(
     city_name VARCHAR(50),
     cod NUMERIC
 );
+
 CREATE TABLE weatherDataOpenAPIForecast(
     id SERIAL PRIMARY KEY,
     cod NUMERIC,
