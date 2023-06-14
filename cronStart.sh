@@ -3,6 +3,7 @@
 #set cronjobs which should be executed by the crontab
 
 (crontab -l ; echo "*/5 * * * * /helperScripts/getDataCron.sh") | crontab -
+(crontab -l ; echo "0 8 * * * /helperScripts/getDataForecastCron.sh") | crontab -
 ./helperScripts/getDataFromFiles.sh
 
 # * = any value

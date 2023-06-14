@@ -4,7 +4,7 @@ CREATE TABLE weatherDataOpenAPI(
     id SERIAL PRIMARY KEY,
     lon NUMERIC,
     lat NUMERIC,
-    base VARCHAR(50),
+    base TEXT,
     temp NUMERIC,
     feels_like NUMERIC,
     temp_min NUMERIC,
@@ -21,12 +21,12 @@ CREATE TABLE weatherDataOpenAPI(
     dt NUMERIC,
     type NUMERIC,
     sys_id NUMERIC,
-    country VARCHAR(10),
+    country TEXT,
     sunrise NUMERIC,
     sunset NUMERIC,
     timezone NUMERIC,
     city_id NUMERIC,
-    city_name VARCHAR(50),
+    city_name TEXT,
     cod NUMERIC
 );
 

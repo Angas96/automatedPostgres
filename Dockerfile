@@ -10,26 +10,28 @@ RUN apt-get update \
 RUN mkdir helperScripts jsonfiles
 
 # Copying Files from the git repo to the Docker Container
-COPY extension.sql createTable.sql get_data.sql get_data_metgis_current.sql read_files.sql entry.sh /docker-entrypoint-initdb.d/
+COPY extension.sql createTable.sql getData.sql getDataMetgisCurrent.sql readFiles.sql entry.sh /docker-entrypoint-initdb.d/
 COPY wetter /jsonfiles
-COPY getDataCron.sh cronStart.sh getDataFromFiles.sh /helperScripts/
+COPY getDataCron.sh cronStart.sh getDataFromFiles.sh getDataForecastCron.sh /helperScripts/
 
 # Changing the Ownership and Permissions of the copied Files
 RUN chown postgres:postgres \
     /docker-entrypoint-initdb.d/extension.sql \
     /docker-entrypoint-initdb.d/createTable.sql \
-    /docker-entrypoint-initdb.d/get_data.sql \
-    /docker-entrypoint-initdb.d/get_data_metgis_current.sql \
+    /docker-entrypoint-initdb.d/getData.sql \
+    /docker-entrypoint-initdb.d/getDataMetgisCurrent.sql \
     /helperScripts/getDataCron.sh \
+    /helperScripts/getDataForecastCron.sh \
     /helperScripts/cronStart.sh \
     /helperScripts/getDataFromFiles.sh \
     /docker-entrypoint-initdb.d/entry.sh \
     && chmod 755 \
     /docker-entrypoint-initdb.d/extension.sql \
     /docker-entrypoint-initdb.d/createTable.sql \
-    /docker-entrypoint-initdb.d/get_data.sql \
-    /docker-entrypoint-initdb.d/get_data_metgis_current.sql \
+    /docker-entrypoint-initdb.d/getData.sql \
+    /docker-entrypoint-initdb.d/getDataMetgisCurrent.sql \
     /helperScripts/getDataCron.sh \
+    /helperScripts/getDataForecastCron.sh \
     /helperScripts/cronStart.sh \
     /helperScripts/getDataFromFiles.sh \
     /docker-entrypoint-initdb.d/entry.sh
