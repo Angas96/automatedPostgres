@@ -91,6 +91,43 @@ city_population = data.get('city').get('population')
 city_timezone = data.get('city').get('timezone')
 city_sunrise = data.get('city').get('sunrise')
 city_sunset = data.get('city').get('sunset')
+
+if cod is None or cod == "":
+    cod = ''
+
+if message is None:
+    message = 'Message was empty'
+
+if cnt is None:
+    cnt = 0
+
+if city_id is None:
+    city_id = 0
+
+if city_name is None or city_name == "":
+    city_name = 'City Name was empty'
+
+if city_lat is None or not (-90 <= city_lat <= 90):
+    city_lat = 0.0
+
+if city_lon is None or not (-180 <= city_lon <= 180):
+    city_lon = 0.0
+
+if city_country is None:
+    city_country = 'City Country was empty'
+
+if city_population is None:
+    city_population = 0
+
+if city_timezone is None:
+    city_timezone = 0
+
+if city_sunrise is None:
+    city_sunrise = 0
+
+if city_sunset is None:
+    city_sunset = 0
+
 for record in data['list']:
     dt = record.get('dt')
 
