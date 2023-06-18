@@ -107,10 +107,10 @@ if city_id is None:
 if city_name is None or city_name == "":
     city_name = 'City Name was empty'
 
-if city_lat is None or not (-90 <= city_lat <= 90):
+if city_lat is None:
     city_lat = 0.0
 
-if city_lon is None or not (-180 <= city_lon <= 180):
+if city_lon is None:
     city_lon = 0.0
 
 if city_country is None:
