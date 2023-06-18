@@ -9,4 +9,4 @@
 # * = any value
 # minute hour day(month) month day(week) is the syntax for the cronjob
 # */5 means every 5 minutes
-
+# for further reference use this website to make it easier to set cronjobs correctly (https://crontab.guru/#*_*_*_*)
