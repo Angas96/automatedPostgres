@@ -1,5 +1,5 @@
 # Importing the lastest version of postgres to ensure stability 
-FROM postgres:latest
+FROM postgres:15.3-bullseye
 
 # Installing required Packages for the Database to ensure everything works as intended
 RUN apt-get update \
