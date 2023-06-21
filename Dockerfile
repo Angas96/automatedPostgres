@@ -10,7 +10,7 @@ RUN apt-get update \
 RUN mkdir helperScripts jsonfiles
 
 # Copying Files from the git repo to the Docker Container
-COPY extension.sql createTable.sql getDataOpenAPI.sql getDataMetgisCurrent.sql readFiles.sql entry.sh /docker-entrypoint-initdb.d/
+COPY extension.sql createTable.sql getDataOpenAPI.sql getDataMetgisCurrent.sql getDataMetgisForecast.sql readFiles.sql entry.sh /docker-entrypoint-initdb.d/
 COPY wetter /jsonfiles
 COPY getDataCron.sh cronStart.sh getDataFromFiles.sh getDataForecastCron.sh /helperScripts/
 
@@ -19,6 +19,7 @@ RUN chown postgres:postgres \
     /docker-entrypoint-initdb.d/extension.sql \
     /docker-entrypoint-initdb.d/createTable.sql \
     /docker-entrypoint-initdb.d/getDataOpenAPI.sql \
+    /docker-entrypoint-initdb.d/getDataMetgisForecast.sql \
     /docker-entrypoint-initdb.d/getDataMetgisCurrent.sql \
     /helperScripts/getDataCron.sh \
     /helperScripts/getDataForecastCron.sh \
@@ -29,6 +30,7 @@ RUN chown postgres:postgres \
     /docker-entrypoint-initdb.d/extension.sql \
     /docker-entrypoint-initdb.d/createTable.sql \
     /docker-entrypoint-initdb.d/getDataOpenAPI.sql \
+    /docker-entrypoint-initdb.d/getDataMetgisForecast.sql \
     /docker-entrypoint-initdb.d/getDataMetgisCurrent.sql \
     /helperScripts/getDataCron.sh \
     /helperScripts/getDataForecastCron.sh \
