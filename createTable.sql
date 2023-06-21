@@ -1,6 +1,6 @@
 /*code for creating tables which are needed for insertion and handling of data*/
 
-CREATE TABLE weatherDataOpenAPI(
+CREATE TABLE weatherDataOpenAPICurrent(
     id SERIAL PRIMARY KEY,
     lon NUMERIC,
     lat NUMERIC,
@@ -95,6 +95,30 @@ CREATE TABLE weatherDataMetgisAPICurrent(
     wind_direction TEXT,
     precipitation_rain_intensity NUMERIC,
     wind_strength TEXT
+);
+
+CREATE TABLE weatherDataMetgisAPIForecast(
+    id SERIAL PRIMARY KEY,
+    forecastTimes_LocalTime TEXT,
+    precipitationTotal_3hourlySum_Unit TEXT,
+    precipitationProbability_Unit TEXT,
+    temperature NUMERIC,
+    precipitationSnow_3hourlySum_Unit TEXT,
+    weatherDescription TEXT,
+    totalCloudCover NUMERIC,
+    precipitationRain_3hourlySum NUMERIC,
+    windSpeed NUMERIC,
+    precipitationRain_3hourlySum_Unit TEXT,
+    temperature_Unit TEXT,
+    precipitationProbability NUMERIC,
+    thunderstormProbability TEXT,
+    precipitationSnow_3hourlySum NUMERIC,
+    windSpeed_Unit TEXT,
+    precipitationTotal_3hourlySum NUMERIC,
+    icon TEXT,
+    windDirection TEXT,
+    totalCloudCover_Unit TEXT,
+    windStrength TEXT
 );
 
 CREATE TABLE weatherDataMetgisPrecipitationHistory(
