@@ -1,6 +1,11 @@
 # README.md
 
 **Step 1: Install docker (https://www.docker.com/)**
+For Linux users install docker.
+
+```bash
+brew install --cask docker
+```
 
 **Step 2: Make a createEnviromentVariables.bat / createEnviromentVariables.sh (for Linux Users) file which should look like this:**
 
