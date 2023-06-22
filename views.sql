@@ -1,3 +1,5 @@
+# explain short meanings!
+
 CREATE VIEW weatherDataView AS
 SELECT
     w.date,
