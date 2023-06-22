@@ -13,3 +13,4 @@ docker run -d -p $POSTGRES_PORT:5432 -e POSTGRES_USER=$POSTGRES_USER -e POSTGRES
 docker exec -it automatedPostgres /bin/bash -c "bash /docker-entrypoint-initdb.d/entry.sh"
 docker exec -it automatedPostgres /bin/bash -c "bash /helperScripts/cronStart.sh"
 
+
