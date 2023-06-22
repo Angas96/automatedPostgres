@@ -30,8 +30,6 @@ forecast_threehourly = data.get('Forecast_3hourly')
 helperEnd = len(forecast_threehourly.get('ForecastTimes_LocalTime'))
 for i in range(helperEnd):
     forecastTimes_LocalTime = forecast_threehourly.get('ForecastTimes_LocalTime')[i]
-    if forecastTimes_LocalTime is Null:
-        forecastTimes_LocalTime = "No Time given"
     precipitationTotal_3hourlySum_Unit = forecast_threehourly.get('PrecipitationTotal_3hourlySum_Unit')
     precipitationProbability_Unit = forecast_threehourly.get('PrecipitationProbability_Unit')
     temperature = forecast_threehourly.get('Temperature')[i]

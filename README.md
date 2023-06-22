@@ -74,5 +74,6 @@ source createEnviromentVariables.sh
 
 ```console
 docker pull dpage/pgadmin4
+docker run --name pgadmin -e "PGADMIN_DEFAULT_EMAIL=name@example.com" -e "PGADMIN_DEFAULT_PASSWORD=admin" -p 5050:80 -d dpage/pgadmin4 
 ```
 
