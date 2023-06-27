@@ -66,6 +66,21 @@ chmod +x createContainer.sh
 ```bash
 chmod +x createEnviromentVariables.sh
 ```
+```bash
+chmod +x cronStart.sh
+```
+```bash
+chmod +x entry.sh
+```
+```bash
+chmod +x getDataCron.sh
+```
+```bash
+chmod +x getDataForecastCron.sh
+```
+```bash
+chmod +x startDocker.sh
+```
 To start the shell scripts type: 
 ```bash
 source createEnviromentVariables.sh

@@ -21,19 +21,37 @@ RUN chown postgres:postgres \
     /docker-entrypoint-initdb.d/getDataOpenAPI.sql \
     /docker-entrypoint-initdb.d/getDataMetgisForecast.sql \
     /docker-entrypoint-initdb.d/getDataMetgisCurrent.sql \
+    /docker-entrypoint-initdb.d/readFiles.sql \
     /helperScripts/getDataCron.sh \
     /helperScripts/getDataForecastCron.sh \
     /helperScripts/cronStart.sh \
     /helperScripts/getDataFromFiles.sh \
     /docker-entrypoint-initdb.d/entry.sh \
+    /jsonfiles/Werfenweng_MetGIS_Precipitation_hourly_20200901-20201101.json \
+    /jsonfiles/Werfenweng_MetGIS_Precipitation_hourly_20211201-20220301.json \
+    /jsonfiles/Werfenweng_MetGIS_RelHumidity_hourly_20200901-20201101.json \
+    /jsonfiles/Werfenweng_MetGIS_RelHumidity_hourly_20211201-20220301.json \
+    /jsonfiles/Werfenweng_MetGIS_Temperature_hourly_20200901-20201101.json \
+    /jsonfiles/Werfenweng_MetGIS_Temperature_hourly_20211201-20220301.json \
+    /jsonfiles/Werfenweng_MetGIS_Wind_hourly_20200901-20201101.json \
+    /jsonfiles/Werfenweng_MetGIS_Wind_hourly_20211201-20220301.json \
     && chmod 755 \
     /docker-entrypoint-initdb.d/extension.sql \
     /docker-entrypoint-initdb.d/createTable.sql \
     /docker-entrypoint-initdb.d/getDataOpenAPI.sql \
     /docker-entrypoint-initdb.d/getDataMetgisForecast.sql \
     /docker-entrypoint-initdb.d/getDataMetgisCurrent.sql \
+    /docker-entrypoint-initdb.d/readFiles.sql \
     /helperScripts/getDataCron.sh \
     /helperScripts/getDataForecastCron.sh \
     /helperScripts/cronStart.sh \
     /helperScripts/getDataFromFiles.sh \
-    /docker-entrypoint-initdb.d/entry.sh
+    /docker-entrypoint-initdb.d/entry.sh \
+    /jsonfiles/Werfenweng_MetGIS_Precipitation_hourly_20200901-20201101.json \
+    /jsonfiles/Werfenweng_MetGIS_Precipitation_hourly_20211201-20220301.json \
+    /jsonfiles/Werfenweng_MetGIS_RelHumidity_hourly_20200901-20201101.json \
+    /jsonfiles/Werfenweng_MetGIS_RelHumidity_hourly_20211201-20220301.json \
+    /jsonfiles/Werfenweng_MetGIS_Temperature_hourly_20200901-20201101.json \
+    /jsonfiles/Werfenweng_MetGIS_Temperature_hourly_20211201-20220301.json \
+    /jsonfiles/Werfenweng_MetGIS_Wind_hourly_20200901-20201101.json \
+    /jsonfiles/Werfenweng_MetGIS_Wind_hourly_20211201-20220301.json 
