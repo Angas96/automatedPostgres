@@ -86,7 +86,7 @@ To start the shell scripts type:
 ./createContainer.sh
 ```
 
-if container was already build once and just needs to be started again use which ensures that the cronjobs are started aswell
+if container was already build once and just needs to be started again use
 ```bash
 ./startDocker.sh
 ```
