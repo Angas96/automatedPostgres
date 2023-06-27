@@ -86,6 +86,11 @@ To start the shell scripts type:
 ./createContainer.sh
 ```
 
+if container was already build once and just needs to be started again use which ensures that the cronjobs are started aswell
+```bash
+./startDocker.sh
+```
+
 **Step 3: For testing reasons install pgadmin4 via docker (https://hub.docker.com/r/dpage/pgadmin4/)**
 
 
