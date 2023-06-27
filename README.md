@@ -83,9 +83,6 @@ chmod +x startDocker.sh
 ```
 To start the shell scripts type: 
 ```bash
-source createEnviromentVariables.sh
-```
-```bash
 ./createContainer.sh
 ```
 
