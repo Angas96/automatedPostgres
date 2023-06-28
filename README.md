@@ -9,4 +9,6 @@ brew install --cask docker
 
 ```bash
 chmod +x cronHelper.sh
+chmod +x linuxPermission.sh
+
 ```
