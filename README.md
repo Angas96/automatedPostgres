@@ -7,7 +7,7 @@ For Linux users install docker.
 brew install --cask docker
 ```
 
-**Step 2: Make a createEnviromentVariables.bat / createEnviromentVariables.sh (for Linux Users) file which should look like this:**
+**Step 2: Make a createEnvironmentVariables.bat / createEnvironmentVariables.sh (for Linux Users) file which should look like this:**
 
 ### Windows
 
