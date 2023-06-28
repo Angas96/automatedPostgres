@@ -27,7 +27,8 @@ CREATE TABLE weatherDataOpenAPICurrent(
     timezone NUMERIC,
     city_id NUMERIC,
     city_name TEXT,
-    cod NUMERIC
+    cod NUMERIC,
+    lastmodified TIMESTAMP
 );
 
 CREATE TABLE weatherDataOpenAPIForecast(
@@ -65,7 +66,8 @@ CREATE TABLE weatherDataOpenAPIForecast(
     city_population NUMERIC,
     city_timezone NUMERIC,
     city_sunrise NUMERIC,
-    city_sunset NUMERIC
+    city_sunset NUMERIC,
+    lastmodified TIMESTAMP
 );
 
 CREATE TABLE weatherDataMetgisAPICurrent(
@@ -94,7 +96,8 @@ CREATE TABLE weatherDataMetgisAPICurrent(
     icon TEXT,
     wind_direction TEXT,
     precipitation_rain_intensity NUMERIC,
-    wind_strength TEXT
+    wind_strength TEXT,
+    lastmodified TIMESTAMP
 );
 
 CREATE TABLE weatherDataMetgisAPIForecast(
@@ -118,7 +121,8 @@ CREATE TABLE weatherDataMetgisAPIForecast(
     icon TEXT,
     windDirection TEXT,
     totalCloudCover_Unit TEXT,
-    windStrength TEXT
+    windStrength TEXT,
+    lastmodified TIMESTAMP
 );
 
 CREATE TABLE weatherDataMetgisPrecipitationHistory(
@@ -132,7 +136,8 @@ CREATE TABLE weatherDataMetgisPrecipitationHistory(
     info_hrp TEXT,
     info_lat TEXT,
     info_lon TEXT,
-    info_alt TEXT
+    info_alt TEXT,
+    lastmodified TIMESTAMP
 );
 
 CREATE TABLE weatherDataMetgisRelHumidityHistory(
@@ -146,7 +151,8 @@ CREATE TABLE weatherDataMetgisRelHumidityHistory(
     info_rh TEXT,
     info_lat TEXT,
     info_lon TEXT,
-    info_alt TEXT
+    info_alt TEXT,
+    lastmodified TIMESTAMP
 );
 
 CREATE TABLE weatherDataMetgisTemperatureHistory(
@@ -160,7 +166,8 @@ CREATE TABLE weatherDataMetgisTemperatureHistory(
     info_tmp TEXT,
     info_lat TEXT,
     info_lon TEXT,
-    info_alt TEXT
+    info_alt TEXT,
+    lastmodified TIMESTAMP
 );
 
 CREATE TABLE weatherDataMetgisWindHistory(
@@ -176,7 +183,59 @@ CREATE TABLE weatherDataMetgisWindHistory(
     info_wspd TEXT,
     info_lat TEXT,
     info_lon TEXT,
-    info_alt TEXT
+    info_alt TEXT,
+    lastmodified TIMESTAMP
 );
 
+CREATE OR REPLACE FUNCTION lastModifiedTrigger()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        NEW.lastmodified := DATE_TRUNC('second', CURRENT_TIMESTAMP);
+        RETURN NEW;
+    ELSIF TG_OP = 'UPDATE' THEN
+        NEW.lastmodified := DATE_TRUNC('second', CURRENT_TIMESTAMP);
+        RETURN NEW;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
 
+CREATE TRIGGER changeweatherDataOpenAPICurrent
+BEFORE INSERT OR UPDATE ON weatherDataOpenAPICurrent
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
+
+CREATE TRIGGER changeweatherDataOpenAPIForecast
+BEFORE INSERT OR UPDATE ON weatherDataOpenAPIForecast
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
+
+CREATE TRIGGER changeweatherDataMetgisAPICurrent
+BEFORE INSERT OR UPDATE ON weatherDataMetgisAPICurrent
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
+
+CREATE TRIGGER changeweatherDataMetgisAPIForecast
+BEFORE INSERT OR UPDATE ON weatherDataMetgisAPIForecast
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
+
+CREATE TRIGGER changeweatherDataMetgisPrecipitationHistory
+BEFORE INSERT OR UPDATE ON weatherDataMetgisPrecipitationHistory
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
+
+CREATE TRIGGER changeweatherDataMetgisRelHumidityHistory
+BEFORE INSERT OR UPDATE ON weatherDataMetgisRelHumidityHistory
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
+
+CREATE TRIGGER changeweatherDataMetgisTemperatureHistory
+BEFORE INSERT OR UPDATE ON weatherDataMetgisTemperatureHistory
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
+
+CREATE TRIGGER changeweatherDataMetgisWindHistory
+BEFORE INSERT OR UPDATE ON weatherDataMetgisWindHistory
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
