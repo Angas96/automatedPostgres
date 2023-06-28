@@ -1,4 +1,4 @@
-# explain short meanings!
+/* explain short meanings!*/
 
 CREATE VIEW weatherDataView AS
 SELECT
