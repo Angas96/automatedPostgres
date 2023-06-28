@@ -11,11 +11,7 @@ Docker Compose from this Guide (https://docs.docker.com/compose/install/linux/).
 brew install --cask docker
 ```
 
-```bash
-chmod +x cronHelper.sh
-chmod +x linuxPermission.sh
 
-```
 insert the .env file into the database folder which needs to look like this
 ```batch
 POSTGRES_API_KEY_OPEN=[API_KEY_NEEDED]
