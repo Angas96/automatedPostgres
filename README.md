@@ -25,6 +25,14 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
+```bash
+sudo apt-get update
+```
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
 insert the .env file into the database folder which needs to look like this
 ```batch
 POSTGRES_API_KEY_OPEN=[API_KEY_NEEDED]
