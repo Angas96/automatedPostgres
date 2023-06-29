@@ -8,9 +8,22 @@ For Linux users install docker from this guide (https://docs.docker.com/engine/i
 Docker Compose from this Guide (https://docs.docker.com/compose/install/linux/).
 
 ```bash
-brew install --cask docker
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
 ```
 
+```bash
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+```bash
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 
 insert the .env file into the database folder which needs to look like this
 ```batch
