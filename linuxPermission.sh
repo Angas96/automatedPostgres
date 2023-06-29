@@ -1,6 +1,6 @@
 #!/bin/bash
-chmod +x -R sql
-chmod +x -R helperScripts
-chmod +x -R wetter
-chmod +x -R database
+chmod +rwx -R sql
+chmod +rwx -R helperScripts
+chmod +rwx -R wetter
+chmod +rwx -R database
 chmod +x restartContainer.sh
