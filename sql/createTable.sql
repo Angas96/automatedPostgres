@@ -187,6 +187,15 @@ CREATE TABLE weatherDataMetgisWindHistory(
     lastmodified TIMESTAMP
 );
 
+CREATE TABLE countryMapping(
+    id SERIAL PRIMARY KEY,
+    lat NUMERIC,
+    lon NUMERIC,
+    zipcode NUMERIC,
+    place TEXT,
+    lastmodified TIMESTAMP
+);
+
 CREATE OR REPLACE FUNCTION lastModifiedTrigger()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -237,5 +246,10 @@ EXECUTE FUNCTION lastModifiedTrigger();
 
 CREATE TRIGGER changeweatherDataMetgisWindHistory
 BEFORE INSERT OR UPDATE ON weatherDataMetgisWindHistory
+FOR EACH ROW
+EXECUTE FUNCTION lastModifiedTrigger();
+
+CREATE TRIGGER changecountryMapping
+BEFORE INSERT OR UPDATE ON countryMapping
 FOR EACH ROW
 EXECUTE FUNCTION lastModifiedTrigger();

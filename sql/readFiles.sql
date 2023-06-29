@@ -167,3 +167,42 @@ def import_data(json_file):
 
 import_data(json_file)
 $$ LANGUAGE plpython3u;
+
+CREATE OR REPLACE FUNCTION import_country(json_file text)
+RETURNS void AS $$
+import json
+import os
+import psycopg2
+
+def import_data(json_file):
+    conn = psycopg2.connect(
+        dbname=os.getenv('POSTGRES_DB'),
+        user=os.getenv('POSTGRES_USER'),
+        password=os.getenv('POSTGRES_PASSWORD'),
+        host='localhost'
+    )
+    cur = conn.cursor()
+    if os.path.exists(json_file):
+        with open(json_file, 'r') as file:
+            data = json.load(file)
+            for record in data:
+                zipcode = record.get('zipcode')
+                place = record.get('place')
+                latitude = record.get('latitude')
+                longitude = record.get('longitude')
+                
+                # Insert the record into the table
+                cur.execute("""
+                    INSERT INTO countryMapping (lat, lon, zipcode, place)
+                    VALUES (%s, %s, %s, %s)
+                """, (latitude, longitude, zipcode, place))
+                
+                conn.commit()
+                
+            conn.close()
+    else:
+        raise FileNotFoundError("JSON file does not exist.")
+
+import_data(json_file)
+$$ LANGUAGE plpython3u;
+

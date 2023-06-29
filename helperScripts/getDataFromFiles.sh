@@ -10,3 +10,6 @@ psql -U postgres -d AutomatedPostgres -c "select import_temperature('/jsonfiles/
 psql -U postgres -d AutomatedPostgres -c "select import_temperature('/jsonfiles/Werfenweng_MetGIS_Temperature_hourly_20211201-20220301.json')"
 psql -U postgres -d AutomatedPostgres -c "select import_wind('/jsonfiles/Werfenweng_MetGIS_Wind_hourly_20200901-20201101.json')"
 psql -U postgres -d AutomatedPostgres -c "select import_wind('/jsonfiles/Werfenweng_MetGIS_Wind_hourly_20211201-20220301.json')"
+psql -U postgres -d AutomatedPostgres -c "select import_country('/jsonfiles/zipcodes.at.json')"
+psql -U postgres -d AutomatedPostgres -c "select import_country('/jsonfiles/zipcodes.de.json')"
+psql -U postgres -d AutomatedPostgres -c "select import_country('/jsonfiles/zipcodes.ch.json')"
