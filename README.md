@@ -33,6 +33,10 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
+```bash
+chmod +x linuxPermission.sh
+```
+
 insert the .env file into the database folder which needs to look like this
 ```batch
 POSTGRES_API_KEY_OPEN=[API_KEY_NEEDED]
