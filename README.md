@@ -35,6 +35,9 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 ```bash
 chmod +x linuxPermission.sh
+sudo ./run.sh
 ```
 
 change the API Keys in the .env file in the database folder before starting the program
+
+If you want to restart the containers after they were build, use restartContainer.bat/restartContainer.sh accordingly. 
