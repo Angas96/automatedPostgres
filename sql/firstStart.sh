@@ -6,3 +6,4 @@ psql -U postgres -d AutomatedPostgres < sql/getDataMetgisForecast.sql
 psql -U postgres -d AutomatedPostgres < sql/getDataOpenAPI.sql
 psql -U postgres -d AutomatedPostgres < sql/readFiles.sql
 psql -U postgres -d AutomatedPostgres < sql/views.sql
+psql -U postgres -d AutomatedPostgres -c "INSERT INTO countryMapping (lat, lon, zipcode, place) VALUES ($POSTGRES_LAT, $POSTGRES_LON, $POSTGRES_ZIPCODE, '$POSTGRES_CITY')"
