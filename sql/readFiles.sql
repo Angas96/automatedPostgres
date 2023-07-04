@@ -187,15 +187,16 @@ def import_data(json_file):
             data = json.load(file)
             for record in data:
                 zipcode = record.get('zipcode')
+                community = record.get('community')
                 place = record.get('place')
                 latitude = record.get('latitude')
                 longitude = record.get('longitude')
                 
                 # Insert the record into the table
                 cur.execute("""
-                    INSERT INTO countryMapping (lat, lon, zipcode, place)
-                    VALUES (%s, %s, %s, %s)
-                """, (latitude, longitude, zipcode, place))
+                    INSERT INTO countryMapping (lat, lon, zipcode, place, community)
+                    VALUES (%s, %s, %s, %s, %s)
+                """, (latitude, longitude, zipcode, place, community))
                 
                 conn.commit()
                 

@@ -192,6 +192,7 @@ CREATE TABLE countryMapping(
     lat NUMERIC,
     lon NUMERIC,
     zipcode NUMERIC,
+    community TEXT,
     place TEXT,
     lastmodified TIMESTAMP
 );
