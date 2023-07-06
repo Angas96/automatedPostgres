@@ -28,6 +28,7 @@ CREATE TABLE weatherDataOpenAPICurrent(
     city_id NUMERIC,
     city_name TEXT,
     cod NUMERIC,
+    currentDate TIMESTAMP,
     lastmodified TIMESTAMP
 );
 
@@ -57,7 +58,7 @@ CREATE TABLE weatherDataOpenAPIForecast(
     visibility NUMERIC,
     pop NUMERIC,
     sys_pod TEXT,
-    dt_txt TEXT,
+    dt_txt TIMESTAMP,
     city_id NUMERIC,
     city_name TEXT,
     city_lat NUMERIC,
@@ -97,6 +98,7 @@ CREATE TABLE weatherDataMetgisAPICurrent(
     wind_direction TEXT,
     precipitation_rain_intensity NUMERIC,
     wind_strength TEXT,
+    currentDate TIMESTAMP,
     lastmodified TIMESTAMP
 );
 

@@ -6,6 +6,7 @@ import urllib.request
 import json
 import psycopg2
 import os
+import datetime
 
 # Check if the url is read correctly
 url = os.getenv('POSTGRES_OPENWEATHERLINK')
@@ -26,15 +27,31 @@ conn = psycopg2.connect(
 
 # Insert the data into the specified table
 cur = conn.cursor()
+min_temp = float(os.environ.get('MIN_TEMP', -273.15))
+max_temp = float(os.environ.get('MAX_TEMP', 100.0))
+min_humidity = float(os.environ.get('MIN_HUMIDITY', 0))
+max_humidity = float(os.environ.get('MAX_HUMIDITY', 100))
+min_pressure = float(os.environ.get('MIN_PRESSURE', 100))
+max_pressure = float(os.environ.get('MAX_PRESSURE', 1050))
+
+if not (min_temp <= data['main']['temp'] <= max_temp):
+    data['main']['temp']=4471.1
+
+if not (min_pressure <= data['main']['pressure'] <= max_pressure):
+    data['main']['pressure']=4471.1
+
+if not (min_humidity <= data['main']['humidity'] <= max_humidity):
+    data['main']['humidity']=4471.1
+
 cur.execute("""
     INSERT INTO weatherDataOpenAPICurrent (
         lon, lat, base, temp, feels_like, temp_min, temp_max, pressure, humidity, sea_level,
         grnd_level, visibility, speed, deg, gust, all_clouds, dt, type, sys_id, country,
-        sunrise, sunset, timezone, city_id, city_name, cod
+        sunrise, sunset, timezone, city_id, city_name, cod, currentDate
     ) VALUES (
         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-        %s, %s, %s, %s, %s, %s
+        %s, %s, %s, %s, %s, %s, %s
     )
 """, (
     data['coord']['lon'], data['coord']['lat'], data['base'], data['main']['temp'], data['main']['feels_like'],
@@ -42,7 +59,7 @@ cur.execute("""
     data['main']['sea_level'], data['main']['grnd_level'], data['visibility'], data['wind']['speed'],
     data['wind']['deg'], data['wind']['gust'], data['clouds']['all'], data['dt'], data['sys']['type'],
     data['sys']['id'], data['sys']['country'], data['sys']['sunrise'], data['sys']['sunset'],
-    data['timezone'], data['id'], data['name'], data['cod']
+    data['timezone'], data['id'], data['name'], data['cod'], datetime.datetime.fromtimestamp(data['dt'])
 ))
 conn.commit()
 
