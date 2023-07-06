@@ -24,6 +24,21 @@ conn = psycopg2.connect(
     host='localhost'
 )
 
+min_temp = float(os.environ.get('MIN_TEMP', -273.15))
+max_temp = float(os.environ.get('MAX_TEMP', 100.0))
+min_humidity = float(os.environ.get('MIN_HUMIDITY', 0))
+max_humidity = float(os.environ.get('MAX_HUMIDITY', 100))
+min_pressure = float(os.environ.get('MIN_PRESSURE', 100))
+max_pressure = float(os.environ.get('MAX_PRESSURE', 1050))
+min_wind_speed = float(os.environ.get('MIN_WIND_SPEED', 0.0))
+max_wind_speed = float(os.environ.get('MAX_WIND_SPEED', 20.0))
+
+if not (min_temp <= data['Current']['Temperature'] <= max_temp):
+    data['Current']['Temperature']=4471.1
+
+if not (min_wind_speed <= data['Current']['WindSpeed'] <= max_wind_speed):
+    data['Current']['WindSpeed']=4471.1
+
 # Insert the data into the specified table
 cur = conn.cursor()
 cur.execute("""
