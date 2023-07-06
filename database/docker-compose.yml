@@ -19,7 +19,6 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    restart: unless-stopped
     volumes:
       - ./pgpass:/pgpass
       - ./servers.json:/pgadmin4/servers.json
