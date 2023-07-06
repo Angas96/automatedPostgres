@@ -11,7 +11,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ../sql:/sql
       - ../helperScripts:/helperScripts/
-      - ../wetter:/jsonfiles
+      - ../weather:/jsonfiles
     networks:
       - pgnetwork
     ports:
