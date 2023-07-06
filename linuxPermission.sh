@@ -1,7 +1,7 @@
 #!/bin/bash
-chmod +rwx -R sql
-chmod +rwx -R helperScripts
-chmod +rwx -R weather
-chmod +rwx -R database
+chmod 755 -R sql
+chmod 755 -R helperScripts
+chmod 755 -R weather
+chmod 755 -R database
 chmod +x run.sh
 chmod +x restartContainer.sh
