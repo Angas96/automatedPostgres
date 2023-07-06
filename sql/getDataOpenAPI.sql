@@ -33,6 +33,8 @@ min_humidity = float(os.environ.get('MIN_HUMIDITY', 0))
 max_humidity = float(os.environ.get('MAX_HUMIDITY', 100))
 min_pressure = float(os.environ.get('MIN_PRESSURE', 100))
 max_pressure = float(os.environ.get('MAX_PRESSURE', 1050))
+min_wind_speed = float(os.environ.get('MIN_WIND_SPEED', 0.0))
+max_wind_speed = float(os.environ.get('MAX_WIND_SPEED', 20.0))
 
 if not (min_temp <= data['main']['temp'] <= max_temp):
     data['main']['temp']=4471.1
@@ -42,6 +44,9 @@ if not (min_pressure <= data['main']['pressure'] <= max_pressure):
 
 if not (min_humidity <= data['main']['humidity'] <= max_humidity):
     data['main']['humidity']=4471.1
+
+if not (min_wind_speed <= data['wind']['speed'] <= max_wind_speed):
+    data['wind']['speed']=4471.1
 
 cur.execute("""
     INSERT INTO weatherDataOpenAPICurrent (
