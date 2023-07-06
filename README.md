@@ -37,7 +37,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 ```bash
 chmod +x linuxPermission.sh
-sudo ./run.sh
+sudo sh ./run.sh
 ```
 
 If you want to restart the containers after they were build, use restartContainer.bat/restartContainer.sh accordingly. 
