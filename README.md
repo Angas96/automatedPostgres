@@ -39,5 +39,8 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 chmod +x linuxPermission.sh
 sudo sh ./run.sh
 ```
-
-If you want to restart the containers after they were build, use restartContainer.bat/restartContainer.sh accordingly. 
+**Pgadmin usage**
+After starting the containers localhost:5050 will be available. Simply open the browser of your choice and enter localhost:5050.  
+The login credentials for pgadmin are defined in the .env file.  
+To enter the database "postgres" is the password for the database and it can be changed in the .env file aswell.  
+If you want to restart the containers after they were build and are not running at the moment, use restartContainer.bat/sudo restartContainer.sh accordingly.  
