@@ -39,7 +39,8 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 chmod +x linuxPermission.sh
 sudo sh ./run.sh
 ```
-**Pgadmin usage**
+**Pgadmin usage**  
+
 After starting the containers localhost:5050 will be available. Simply open the browser of your choice and enter localhost:5050.  
 The login credentials for pgadmin are defined in the .env file.  
 To enter the database "postgres" is the password for the database and it can be changed in the .env file aswell.  
