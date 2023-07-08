@@ -3,6 +3,7 @@ RETURNS void AS $$
 import json
 import os
 import psycopg2
+import datetime
 
 def import_data(json_file):
     conn = psycopg2.connect(
@@ -26,7 +27,7 @@ def import_data(json_file):
                     lon = record.get('lon')
                     lat = record.get('lat')
                     alt = record.get('alt')
-                    date = record.get('date')
+                    date = datetime.datetime.strptime(record.get('date'), "%Y%m%d %H:%M").strftime("%Y-%m-%d %H:%M:%S")
                     hrp = record.get('hrp')
                     # Insert the record into the table
                     cur.execute("INSERT INTO weatherDataMetgisPrecipitationHistory (info, lon, lat, alt, date, hrp, info_hrp, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (info, lon, lat, alt, date, hrp, info_hrp, info_lat, info_lon, info_alt))
@@ -45,6 +46,8 @@ RETURNS void AS $$
 import json
 import os
 import psycopg2
+import datetime
+
 
 def import_data(json_file):
     conn = psycopg2.connect(
@@ -67,7 +70,7 @@ def import_data(json_file):
                     lon = record.get('lon')
                     lat = record.get('lat')
                     alt = record.get('alt')
-                    date = record.get('date')
+                    date = datetime.datetime.strptime(record.get('date'), "%Y%m%d %H:%M").strftime("%Y-%m-%d %H:%M:%S")
                     rh = record.get('rh')
                     # Insert the record into the table
                     cur.execute("INSERT INTO weatherDataMetgisRelHumidityHistory (info, lon, lat, alt, date, rh, info_rh, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -87,6 +90,8 @@ RETURNS void AS $$
 import json
 import os
 import psycopg2
+import datetime
+
 
 def import_data(json_file):
     conn = psycopg2.connect(
@@ -109,7 +114,7 @@ def import_data(json_file):
                     lon = record.get('lon')
                     lat = record.get('lat')
                     alt = record.get('alt')
-                    date = record.get('date')
+                    date = datetime.datetime.strptime(record.get('date'), "%Y%m%d %H:%M").strftime("%Y-%m-%d %H:%M:%S")
                     tmp = record.get('tmp')
                     # Insert the record into the table
                     cur.execute("INSERT INTO weatherDataMetgisTemperatureHistory (info, lon, lat, alt, date, tmp, info_tmp, info_lat, info_lon, info_alt) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -129,6 +134,8 @@ RETURNS void AS $$
 import json
 import os
 import psycopg2
+import datetime
+
 
 def import_data(json_file):
     conn = psycopg2.connect(
@@ -152,7 +159,7 @@ def import_data(json_file):
                     lon = record.get('lon')
                     lat = record.get('lat')
                     alt = record.get('alt')
-                    date = record.get('date')
+                    date = datetime.datetime.strptime(record.get('date'), "%Y%m%d %H:%M").strftime("%Y-%m-%d %H:%M:%S")
                     wdir = record.get('wdir')
                     wspd = record.get('wspd')
                     # Insert the record into the table

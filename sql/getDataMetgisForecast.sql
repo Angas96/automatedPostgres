@@ -6,6 +6,7 @@ import urllib.request
 import json
 import psycopg2
 import os
+import datetime
 
 # Check if the url is read correctly
 url = os.getenv('POSTGRES_METGISLINK_FORECAST')
@@ -29,7 +30,9 @@ cur = conn.cursor()
 forecast_threehourly = data.get('Forecast_3hourly')
 helperEnd = len(forecast_threehourly.get('ForecastTimes_LocalTime'))
 for i in range(helperEnd):
-    forecastTimes_LocalTime = forecast_threehourly.get('ForecastTimes_LocalTime')[i]
+    datetime_obj = datetime.datetime.fromisoformat(forecast_threehourly.get('ForecastTimes_LocalTime')[i])
+    formatted_datetime = datetime_obj.strftime("%Y-%m-%d %H:%M:%S")
+    forecastTimes_LocalTime = formatted_datetime
     precipitationTotal_3hourlySum_Unit = forecast_threehourly.get('PrecipitationTotal_3hourlySum_Unit')
     precipitationProbability_Unit = forecast_threehourly.get('PrecipitationProbability_Unit')
     temperature = forecast_threehourly.get('Temperature')[i]
