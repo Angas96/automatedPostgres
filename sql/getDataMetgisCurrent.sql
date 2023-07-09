@@ -6,6 +6,7 @@ import urllib.request
 import json
 import psycopg2
 import os
+import datetime
 
 # Check if the url is read correctly
 url = os.getenv('POSTGRES_METGISLINK_CURRENT')
@@ -38,7 +39,9 @@ if not (min_temp <= data['Current']['Temperature'] <= max_temp):
 
 if not (min_wind_speed <= data['Current']['WindSpeed'] <= max_wind_speed):
     data['Current']['WindSpeed']=4471.1
-
+datetime_obj = datetime.datetime.fromisoformat(data['Info']['Forecast_Calculated_LocalTime'])
+formatted_datetime = datetime_obj.strftime("%Y-%m-%d %H:%M:%S")
+currentdate = formatted_datetime
 # Insert the data into the specified table
 cur = conn.cursor()
 cur.execute("""
@@ -50,7 +53,7 @@ cur.execute("""
         weather_description, moon_rise, wind_speed, temperature_unit,
         sun_set, sun_rise, precipitation_snow_intensity, wind_speed_unit,
         moon_set, icon, wind_direction, precipitation_rain_intensity,
-        wind_strength
+        wind_strength, currentdate
     ) VALUES (
         %s, %s, %s,
         %s, %s, %s, %s, %s,
@@ -59,7 +62,7 @@ cur.execute("""
         %s, %s, %s, %s,
         %s, %s, %s, %s,
         %s, %s, %s, %s,
-        %s
+        %s, %s
     )
 """, (
     data['Info']['Description'],
@@ -86,7 +89,8 @@ cur.execute("""
     data['Current']['Icon'],
     data['Current']['WindDirection'],
     data['Current']['PrecipitationRain_Intensity'],
-    data['Current']['WindStrength']
+    data['Current']['WindStrength'],
+    currentdate
 ))
 
 
