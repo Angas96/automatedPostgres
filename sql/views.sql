@@ -1,21 +1,45 @@
 /* explain short meanings!*/
 
-CREATE VIEW weatherHistoryDataView AS
+CREATE VIEW weatherHistoryAndCurrentDataCombinedView AS
 SELECT
-    w.date,
-    w.lon,
-    w.lat,
-    w.alt,
-    w.hrp,
-    r.rh,
-    t.tmp,
-    d.wdir,
-    d.wspd
+    w.date AS date,
+    w.lon AS lon,
+    w.lat AS lat,
+    w.alt AS alt,
+    w.hrp AS hrp,
+    r.rh AS rh,
+    t.tmp AS tmp,
+    d.wdir AS wdir,
+    d.wspd AS wspd
 FROM
     weatherDataMetgisPrecipitationHistory w
     JOIN weatherDataMetgisRelHumidityHistory r ON w.date = r.date
     JOIN weatherDataMetgisTemperatureHistory t ON w.date = t.date
-    JOIN weatherDataMetgisWindHistory d ON w.date = d.date;
+    JOIN weatherDataMetgisWindHistory d ON w.date = d.date
+
+UNION ALL
+
+SELECT
+    COALESCE(o.currentDate, m.currentDate) AS date,
+    COALESCE(o.lon, m.longitude) AS lon,
+    COALESCE(o.lat, m.latitude) AS lat,
+    m.altitude AS alt,
+    m.precipitation_total_intensity AS hrp,
+    o.humidity AS rh, 
+    CASE 
+        WHEN o.temp IS NOT NULL AND m.temperature IS NOT NULL THEN (o.temp + m.temperature) / 2
+        ELSE COALESCE(o.temp, m.temperature)
+    END AS tmp,
+    NULL AS wdir,
+    CASE 
+        WHEN o.speed IS NOT NULL AND m.wind_speed IS NOT NULL THEN (o.speed + m.wind_speed) / 2
+        ELSE COALESCE(o.speed, m.wind_speed)
+    END AS wspd
+FROM
+    weatherDataOpenAPICurrent o
+FULL OUTER JOIN
+    weatherDataMetgisAPICurrent m ON o.lon = m.longitude AND o.lat = m.latitude;
+/*COALESCE is used for values which can be missing, so that if one value is present and the other one is not, only the present one will be considered*/
 
 
 CREATE VIEW forecastDataView AS
