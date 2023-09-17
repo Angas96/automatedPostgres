@@ -13,3 +13,5 @@ psql -U postgres -d AutomatedPostgres -c "select import_wind('/jsonfiles/Werfenw
 psql -U postgres -d AutomatedPostgres -c "select import_country('/jsonfiles/zipcodes.at.json')" >> status.txt
 psql -U postgres -d AutomatedPostgres -c "select import_country('/jsonfiles/zipcodes.de.json')" >> status.txt
 psql -U postgres -d AutomatedPostgres -c "select import_country('/jsonfiles/zipcodes.ch.json')" >> status.txt
+
+#If you want to change the data inserted for the History Tables from Metgis simply change the file names here.
