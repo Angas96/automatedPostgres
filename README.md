@@ -4,8 +4,7 @@
 ```batch
 run.bat
 ```
-For Linux users install docker from this guide (https://docs.docker.com/engine/install/ubuntu/).
-Docker Compose from this Guide (https://docs.docker.com/compose/install/linux/).
+You can either use the provided dockerscript.sh or the commands below to install Docker for Linux.
 
 ```bash
 sudo apt-get update
